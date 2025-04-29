@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+// Importar el servicio de la funcionalidad de la foto
+import { PhotoService } from "../services/photo.service";
 
 @Component({
   selector: 'app-tab3',
@@ -8,6 +10,12 @@ import { Component } from '@angular/core';
 })
 export class Tab3Page {
 
-  constructor() {}
+  constructor(public photoService:PhotoService) {}
+    addPhotoToGallery(){
+      this.photoService.addNewToGallery();
+    }
+    async ngOnInit() {
+      await this.photoService.loadSaved();
+    }
 
 }
