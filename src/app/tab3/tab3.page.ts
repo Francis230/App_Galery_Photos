@@ -20,4 +20,7 @@ export class Tab3Page {
     await this.photoService.loadSaved();
     this.showPhotos = true; // Cambia la visibilidad a true después de cargar
   }
+  takePhoto(quality: number) {
+    this.photoService.addNewToGallery(quality);
+  }
 }
