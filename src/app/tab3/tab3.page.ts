@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-// Importar el servicio de la funcionalidad de la foto
 import { PhotoService } from "../services/photo.service";
 
 @Component({
@@ -9,13 +8,19 @@ import { PhotoService } from "../services/photo.service";
   standalone: false,
 })
 export class Tab3Page {
+  showPhotos: boolean = false; // Nueva propiedad para controlar la visibilidad
 
-  constructor(public photoService:PhotoService) {}
-    addPhotoToGallery(){
-      this.photoService.addNewToGallery();
-    }
-    async ngOnInit() {
-      await this.photoService.loadSaved();
-    }
+  constructor(public photoService: PhotoService) {}
 
+  addPhotoToGallery() {
+    this.photoService.addNewToGallery();
+  }
+
+  async loadPhotos() {
+    await this.photoService.loadSaved();
+    this.showPhotos = true; // Cambia la visibilidad a true después de cargar
+  }
+  takePhoto(quality: number) {
+    this.photoService.addNewToGallery(quality);
+  }
 }

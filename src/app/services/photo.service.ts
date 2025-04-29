@@ -86,20 +86,21 @@ constructor(platform: Platform) {
   });
 
 // Método para agregar una nueva foto a la galería
-  public async addNewToGallery(){
-    const capturedPhoto=await Camera.getPhoto({
-      resultType:CameraResultType.Uri,
-      source:CameraSource.Camera,
-      quality:100
-    });
+public async addNewToGallery(quality: number = 100) {
+  const capturedPhoto = await Camera.getPhoto({
+    resultType: CameraResultType.Uri,
+    source: CameraSource.Camera,
+    quality: quality
+  });
 
-    const savedImageFile=await this.savePicture(capturedPhoto)
-     this.photos.unshift(savedImageFile)
-    Preferences.set({
-      key: this.PHOTO_STORAGE,
-      value: JSON.stringify(this.photos),
-    });
-  }
+  const savedImageFile = await this.savePicture(capturedPhoto);
+  this.photos.unshift(savedImageFile);
+
+  Preferences.set({
+    key: this.PHOTO_STORAGE,
+    value: JSON.stringify(this.photos),
+  });
+}
   // Funcion para recuperarlos
   public async loadSaved() {
     // Retrieve cached photo array data
