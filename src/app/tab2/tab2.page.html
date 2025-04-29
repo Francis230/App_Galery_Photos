@@ -7,19 +7,7 @@
 </ion-header>
 
 <ion-content >
-  <ion-grid>
-    <ion-row>
-      <ion-col size="6" *ngFor="let photo of photoService.photos">
-        <ion-card>
-          <img [src]="photo.webviewPath" />
-          <ion-card-content>
-            <p>{{ photo.filepath }}</p>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>  
-
+  
   <ion-fab vertical="bottom" horizontal="center" slot="fixed">
     <ion-fab-button (click)="addPhotoToGallery()">
       <ion-icon name="camera"></ion-icon>
